@@ -21,6 +21,7 @@ jobs:
     docker: *docker_worker
     working_directory: *work_dir
     steps:
+      - run: *git_checkout
       - run: *get_deps
       - persist_to_workspace:
           root: .
