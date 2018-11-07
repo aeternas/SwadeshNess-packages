@@ -1,0 +1,56 @@
+_defaults: &defaults
+_get_deps: &get_deps go get -v -t -d ./...
+
+_docker_worker: &docker_worker
+  - image: circleci/golang:1.10
+_workdir: &work_dir /go/src/github.com/aeternas/SwadeshNess-packages
+
+_git_checkout: &git_checkout
+  name: Checkout
+  command: |
+    mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+    git clone --depth=50 -b $CIRCLE_BRANCH $CIRCLE_REPOSITORY_URL ./ && \
+    git checkout $CIRCLE_SHA1
+
+_attach_workspace: &attach_workspace
+  at: /go/src/github.com/aeternas/SwadeshNess-packages
+
+  version: 2
+jobs:
+  checkout:
+    docker: *docker_worker
+    working_directory: *work_dir
+    steps:
+      - run: *get_deps
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  lint:
+    docker: *docker_worker
+    working_directory: *work_dir
+    steps:
+      - attach_workspace: *attach_workspace
+      - run: 
+          name: linting
+          command: go install ./vendor/github.com/golangci/golangci-lint/cmd/golangci-lint && golangci-lint run
+  unit_tests:
+    docker: *docker_worker
+    working_directory: *work_dir
+    steps:
+      - attach_workspace: *attach_workspace
+      - run:
+          name: tests
+          command: go test -v ./...
+workflows:
+  version: 2
+  lint-test-deploy:
+    jobs:
+      - checkout
+      - lint:
+          requires:
+            - checkout
+      - unit_tests:
+          requires:
+            - checkout
+ 
