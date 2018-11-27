@@ -1,8 +1,8 @@
 aliases:
+  - &project_path /go/src/github.com/aeternas/SwadeshNess-packages
   - &get_deps go get -v -t -d ./...
   - &docker_worker
     - image: circleci/golang:1.11
-  - &work_dir /go/src/github.com/aeternas/SwadeshNess
   - &git_checkout
     name: Checkout
     command: |
@@ -10,13 +10,13 @@ aliases:
       git clone --depth=50 -b $CIRCLE_BRANCH $CIRCLE_REPOSITORY_URL ./ && \
       git checkout $CIRCLE_SHA1
   - &attach_workspace
-    at: /go/src/github.com/aeternas/SwadeshNess-packages
+    at: *project_path
 
 version: 2
 jobs:
   checkout:
     docker: *docker_worker
-    working_directory: *work_dir
+    working_directory: *project_path
     steps:
       - run: *git_checkout
       - run: *get_deps
@@ -26,7 +26,7 @@ jobs:
             - .
   lint:
     docker: *docker_worker
-    working_directory: *work_dir
+    working_directory: *project_path
     steps:
       - attach_workspace: *attach_workspace
       - run: 
@@ -34,7 +34,7 @@ jobs:
           command: go install ./vendor/github.com/golangci/golangci-lint/cmd/golangci-lint && golangci-lint run
   unit_tests:
     docker: *docker_worker
-    working_directory: *work_dir
+    working_directory: *project_path
     steps:
       - attach_workspace: *attach_workspace
       - run:
