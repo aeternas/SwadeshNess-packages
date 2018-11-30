@@ -17,6 +17,10 @@ aliases:
     command: go test -v ./...
   - &attach_workspace
     at: *project_path
+  - &persist_to_workspace
+    root: .
+    paths:
+      - .
 
 version: 2
 jobs:
@@ -26,10 +30,7 @@ jobs:
     steps:
       - run: *git_checkout
       - run: *get_deps
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
+      - persist_to_workspace: *persist_to_workspace
   lint:
     docker: *docker_worker
     working_directory: *project_path
