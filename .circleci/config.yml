@@ -45,7 +45,7 @@ jobs:
       - run: *test
 workflows:
   version: 2
-  lint-test-deploy:
+  lint-tests:
     jobs:
       - checkout
       - lint:
@@ -54,11 +54,3 @@ workflows:
       - unit_tests:
           requires:
             - checkout
-    triggers:
-      - schedule:
-          filters:
-          branches:
-            only:
-              - master
-              - development
-
