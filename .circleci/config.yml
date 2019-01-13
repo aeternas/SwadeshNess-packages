@@ -55,8 +55,9 @@ workflows:
           requires:
             - checkout
     triggers:
-      branches:
-        only:
-          - master
-          - development
+      filters:
+        branches:
+          only:
+            - master
+            - development
 
