@@ -54,4 +54,9 @@ workflows:
       - unit_tests:
           requires:
             - checkout
- 
+    triggers:
+      branches:
+        only:
+          - master
+          - development
+
