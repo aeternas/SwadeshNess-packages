@@ -8,6 +8,7 @@ type SwadeshTranslation struct {
 type LanguageTranslation struct {
 	Name        string `json:"name"`
 	Translation string `json:"translation"`
+	Cached      bool   `json:"isCached"`
 }
 
 type GroupTranslation struct {
