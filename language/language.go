@@ -1,7 +1,7 @@
 package language
 
 type Language struct {
-	FullName string
+	FullName string `json:"fullName"`
 	Code     string
 }
 
