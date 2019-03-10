@@ -2,10 +2,10 @@ package language
 
 type Language struct {
 	FullName string `json:"fullName"`
-	Code     string `json:"code"`
+	Code     string
 }
 
 type LanguageGroup struct {
-	Name      string     `json:"name"`
-	Languages []Language `json:"languages"`
+	Name      string
+	Languages []Language
 }
