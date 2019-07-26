@@ -22,7 +22,7 @@ aliases:
     paths:
       - .
 
-version: 2
+version: 2.1
 jobs:
   checkout:
     docker: *docker_worker
@@ -44,7 +44,7 @@ jobs:
       - attach_workspace: *attach_workspace
       - run: *test
 workflows:
-  version: 2
+  version: 2.1
   lint-tests:
     jobs:
       - checkout
