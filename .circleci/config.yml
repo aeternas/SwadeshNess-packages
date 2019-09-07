@@ -2,7 +2,7 @@ aliases:
   - &project_path /go/src/github.com/aeternas/SwadeshNess-packages
   - &get_deps go get -v -t -d ./...
   - &docker_worker
-    - image: circleci/golang
+    - image: circleci/golang:1.11
   - &git_checkout
     name: Checkout
     command: |
