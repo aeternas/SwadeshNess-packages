@@ -24,6 +24,9 @@ aliases:
     paths:
       - .
 
+# -------------------------
+#        JOBS
+# -------------------------
 version: 2.1
 jobs:
   checkout:
