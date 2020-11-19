@@ -31,7 +31,7 @@ jobs:
         export PATH=$PATH:$GOPATH
         export PATH=$PATH:$GOBIN
         #mkdir -p $GOPATH/src/github.com/aeternas/SwadeshNess-packages
-        cd $GOPATH/src/github.com/aeternas/SwadeshNess-packages
+        cd go/src
 
     - name: Get dependencies
       run: |
