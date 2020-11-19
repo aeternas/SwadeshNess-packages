@@ -42,7 +42,9 @@ jobs:
         fi
 
     - name: Build
-      run: go build -v .
+      run: |
+        cd go/src
+        go build -v .
 
     - name: Test
       run: go test -v .
