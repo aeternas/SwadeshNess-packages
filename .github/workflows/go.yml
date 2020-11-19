@@ -20,12 +20,12 @@ jobs:
 
     - name: Change working directory
       run: |
-        export GOPATH=$GITHUB_WORKSPACE/../go/
+        export GOPATH=$GITHUB_WORKSPACE/go
         export GOBIN=$(go env GOPATH)/bin
         export PATH=$PATH:$GOPATH
         export PATH=$PATH:$GOBIN
-        mkdir -p $GOPATH/src/github.com/aeternas/SwadeshNess-packages
-        cd $GOPATH/src/github.com/aeternas/SwadeshNess-packages
+        #        mkdir -p $GOPATH/src/github.com/aeternas/SwadeshNess-packages
+        #cd $GOPATH/src/github.com/aeternas/SwadeshNess-packages
 
     - name: Check out code into the Go module directory
       uses: actions/checkout@v2
