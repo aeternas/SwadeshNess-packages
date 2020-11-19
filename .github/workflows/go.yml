@@ -20,7 +20,7 @@ jobs:
 
     - name: Change working directory
       run: |
-        export GOPATH=$HOME/go
+        export GOPATH=$GITHUB_WORKSPACE/go
         export GOBIN=$(go env GOPATH)/bin
         export PATH=$PATH:$GOPATH
         export PATH=$PATH:$GOBIN
@@ -29,6 +29,8 @@ jobs:
 
     - name: Check out code into the Go module directory
       uses: actions/checkout@v2
+      with:
+        path: go
 
     - name: Get dependencies
       run: |
