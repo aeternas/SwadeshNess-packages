@@ -20,7 +20,7 @@ jobs:
 
     - name: Change working directory
       run: |
-        export GOPATH=$GITHUB_WORKSPACE/go
+        export GOPATH=$GITHUB_WORKSPACE/../go/
         export GOBIN=$(go env GOPATH)/bin
         export PATH=$PATH:$GOPATH
         export PATH=$PATH:$GOBIN
